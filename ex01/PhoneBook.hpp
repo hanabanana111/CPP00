@@ -6,9 +6,6 @@
 #include <iomanip>
 #include <string>
 #include <cstdlib>
-#include <cassert>
-#include <cctype>
-#include <algorithm>
 
 # define TRUE 1
 # define FALSE 0
