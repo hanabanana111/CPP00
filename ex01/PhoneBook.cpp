@@ -1,9 +1,8 @@
 #include"./PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-    index_count_ = 0;
-}
+PhoneBook::PhoneBook():
+    index_count_(0)
+{}
 
 void PhoneBook::addContact()
 {
