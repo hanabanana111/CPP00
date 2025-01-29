@@ -19,9 +19,9 @@ int main()
             phoneBook.searchContact();
         else if (command.compare("ADD") == SAME) 
             phoneBook.addContact();
-        if (std::cin.fail() || std::cin.bad() || std::cin.eof())
-            break;
         else
             std::cout << "Invalid command" << std::endl;
+        if (std::cin.fail() || std::cin.bad() || std::cin.eof())
+            break;
     }
 }
