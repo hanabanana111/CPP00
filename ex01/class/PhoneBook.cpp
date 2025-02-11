@@ -12,8 +12,7 @@ void PhoneBook::addContact()
     std::string new_phone_number;
     std::string new_darkest_secret;
 
-    if (index_count_ == 8)
-        index_count_ = 0;
+    index_count_ %= 8;
     if (cinAddInfo("Please enter first name", new_first_name) == FALSE)
         return;
     if (cinAddInfo("Please enter last name", new_last_name) == FALSE)
@@ -37,10 +36,15 @@ void PhoneBook::addContact()
 bool PhoneBook::cinAddInfo(const std::string& msg, std::string& str)
 {
     std::cout << msg << std::endl;
-    std::cin >> str;
+    std::getline(std::cin, str);
     if (std::cin.fail() || std::cin.bad() || std::cin.eof())
     {
-        std::cout << "Error" << std::endl;
+        std::cerr << "Error" << std::endl;
+        return FALSE;
+    }
+    else if(str.empty())
+    {
+        std::cerr << "Empty input" << std::endl;
         return FALSE;
     }
     else
@@ -50,11 +54,16 @@ bool PhoneBook::cinAddInfo(const std::string& msg, std::string& str)
 bool PhoneBook::cinAddPhoneNumber(const std::string& msg, std::string& phone_number)
 {
     std::cout << msg << std::endl;
-    std::cin >> phone_number;
+    std::getline(std::cin, phone_number);
     if (std::cin.fail() || std::cin.bad() || 
-        std::cin.eof() || checkPhoneNumber(phone_number) == FALSE)
+        std::cin.eof() || checkPhoneNumber(phone_number) == FALSE || phone_number.empty())
     {
-        std::cout << "Invalid phone number" << std::endl;
+        std::cerr << "Invalid phone number" << std::endl;
+        return FALSE;
+    }
+    else if(phone_number.empty())
+    {
+        std::cerr << "Empty input" << std::endl;
         return FALSE;
     }
     else
@@ -88,7 +97,17 @@ void PhoneBook::searchContact()
     }
     printAllContacts();
     std::cout << "Enter index" << std::endl;
-    std::cin >> str_index;
+    std::getline(std::cin, str_index);
+    if (std::cin.fail() || std::cin.bad() || std::cin.eof())
+    {
+        std::cerr << "Invalid index" << std::endl;
+        return ;
+    }
+    else if(str_index.empty())
+    {
+        std::cerr << "Empty input" << std::endl;
+        return ;
+    }
     if(str_index.length() == 1 && checkIndex(str_index, index))
         printOneContact(index);
     else

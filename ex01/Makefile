@@ -3,15 +3,16 @@ CPP_FLAGS = -Wall -Werror -Wextra -std=c++98
 
 PROGRAM_NAME = PhoneBook
 
-SRCDIR := ./
+SRCDIR := ./class
 INCDIR := ./
 
 SRC := $(wildcard $(SRCDIR)/*.cpp) 
+SRC += main.cpp
 
 INCLUDES := -I$(INCDIR)
 
 OBJDIR := objs
-OBJS := $(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+OBJS := $(SRC:$(SRCDIR)//%.cpp=$(OBJDIR)/%.o)
 
 all: $(PROGRAM_NAME)
 
@@ -20,8 +21,9 @@ $(PROGRAM_NAME): $(OBJS)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/class
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(SRCDIR)/%.hpp | $(OBJDIR)
 	$(CPP) $(CPP_FLAGS) $(INCLUDES) -o $@ -c $<
 
 clean:
@@ -39,5 +41,4 @@ re: fclean all
 .PHONY: format
 
 format:
-	clang-format --style=Google -i $(SRCS)
-# $(HEADERS)
+	clang-format --style=Google -i $(SRC)

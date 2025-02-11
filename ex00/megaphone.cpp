@@ -7,14 +7,11 @@ void print_arg_lower_to_upper(char *str)
   for (int i = 0; str[i]; i++) {
     s += toupper(str[i]);
   }
-  std::cout << s << std::flush;
+  std::cout << s;
 }
 
 int main(int argc, char *argv[])
 {
-  int i;
-
-  i = 1;
   std::string s;
   s = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
   if (argc == 1) {
@@ -24,9 +21,9 @@ int main(int argc, char *argv[])
   for (int i = 1; argv[i]; i++) {
     print_arg_lower_to_upper(argv[i]);
     if(argv[i+1])
-      std::cout << " " << std::flush;
+      std::cout << " ";
     else
-      std::cout << "\n" << std::flush;
+      std::cout << std::endl;
   }
   return (0);
 }

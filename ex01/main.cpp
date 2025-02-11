@@ -1,5 +1,5 @@
-#include"./PhoneBook.hpp"
-#include"./Contact.hpp"
+#include"PhoneBook.hpp"
+#include"Contact.hpp"
 #include <iostream>
 #include <string>
 
@@ -12,7 +12,17 @@ int main()
     {
         std::cout << "-----------------------------" << std::endl;
         std::cout << "Command(EXIT, SEARCH, ADD)" << std::endl;
-        std::cin >> command;
+        std::getline(std::cin, command);
+        if (std::cin.fail() || std::cin.bad() || std::cin.eof())
+        {
+            std::cerr << "Error" << std::endl;
+            break;
+        }
+        if(command.empty())
+        {
+            std::cout << "Empty Command" << std::endl;
+            continue;
+        }
         if (command.compare("EXIT") == SAME)
             phoneBook.exitPhoneBook();
         else if (command.compare("SEARCH") == SAME)
@@ -21,7 +31,5 @@ int main()
             phoneBook.addContact();
         else
             std::cout << "Invalid command" << std::endl;
-        if (std::cin.fail() || std::cin.bad() || std::cin.eof())
-            break;
     }
 }

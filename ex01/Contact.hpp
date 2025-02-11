@@ -9,17 +9,17 @@ class Contact
     public:
         Contact();
         void setIndex(const int& new_index);
-        int getIndex();
+        int getIndex() const;
         void setFirstName(const std::string& new_first_name);
-        std::string getFirstName();
+        std::string getFirstName() const;
         void setLastName(const std::string& new_last_name);
-        std::string getLastName();
+        std::string getLastName() const;
         void setNickname(const std::string& new_nickname);
-        std::string getNickname();
+        std::string getNickname() const;
         void setPhoneNumber(const std::string& new_phone_number);
-        std::string getPhoneNumber();
+        std::string getPhoneNumber() const;
         void setDarkestSecret(const std::string& new_darkest_secret);
-        std::string getDarkestSecret();
+        std::string getDarkestSecret() const;
     private:
         int index_;
         std::string first_name_;

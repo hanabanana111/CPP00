@@ -1,7 +1,7 @@
 CPP = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98
 
-PROGRAM_NAME = megaphone
+PROGRAM_NAME = TheJobOfYourDreams
 
 SRCDIR := ./
 INCDIR := ./
@@ -40,3 +40,4 @@ re: fclean all
 
 format:
 	clang-format --style=Google -i $(SRC)
+# $(HEADERS)
